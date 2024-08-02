@@ -1,0 +1,80 @@
+# first of all Display a welcome prompt
+print("Welcome to simple Encryption and Decryption!")
+
+# Ask the user for a password
+password = input("Please enter a good password (should be at least 6 digits): ")
+while len(password) < 6:
+    password = input("Password must be greater than 5 digits. Please try again: ")
+
+# Initialize variables to keep track of recent messages
+recent_encrypted_messages = []
+recent_decrypted_messages = []
+
+# Loop until the user chooses to exit
+while True:
+    # Prompt the user for their choice
+    print("Please choose an option from below:")
+    print("1- Encrypt the text")
+    print("2- Decrypt the text")
+    print("3- Display the Recent Messages")
+    print("4- Exit the program")
+    choice = input("Enter a number: ")
+
+    # Encryption
+    if choice == "1":
+        # Ask the user for the message to encrypt
+        message = input("Enter the message you want to encrypt: ")
+
+        # Encrypt the message
+        encrypted_message = ""
+        for char in message:
+            encrypted_char = chr((ord(char) + 3))
+            encrypted_message += encrypted_char
+
+        # Add the encrypted message to the recent messages list
+        recent_encrypted_messages.append(encrypted_message)
+
+        # Display the encrypted message
+        print(f"Encrypted message is: {encrypted_message}")
+
+    # Decryption
+    elif choice == "2":
+        # Ask the user for the message to decrypt
+        message = input("Enter the message you want to decrypt: ")
+
+        # Decrypt the message
+        decrypted_message = ""
+        for char in message:
+            decrypted_char = chr((ord(char) - 3))
+            decrypted_message += decrypted_char
+
+        # Add the decrypted message to the recent messages list
+        recent_decrypted_messages.append(decrypted_message)
+
+        # Display the decrypted message
+        print(f"Decrypted message is: {decrypted_message}")
+
+    # Recent Messages
+    elif choice == "3":
+        # Ask the user for the password
+        entered_password = input("Please enter your password to view the recent messages: ")
+        if entered_password == password:
+            print("Password matched access granted.")
+            print("Recent encrypted messages:")
+            for message in recent_encrypted_messages:
+                print(message)
+            print("Recent decrypted messages:")
+            for message in recent_decrypted_messages:
+                print(message)
+        else:
+            print("Incorrect password. Please input the correct one.")
+
+    # Exit
+    elif choice == "4":
+        # Exit the program
+        print("Exiting The Program .....")
+        break
+
+    # Invalid choice
+    else:
+        print("Invalid choice . Please choice from 1 to 4 .")
